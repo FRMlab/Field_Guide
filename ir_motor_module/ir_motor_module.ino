@@ -1,33 +1,76 @@
-/******************************************************************************
- * F_RMlab @ Waterloo School of Architecture
- * Code for irSensor and servo motor module
- * Grow-Op
- ******************************************************************************/
-
-/*
+/*-------------------------------------------------------------------- 
+  * F_RMlab @ Waterloo School of Architecture
+  * Code for irSensor and servo motor module
+  * Grow-Op
+  ----
   Code for grow-op
   Style standards are loosely based on PEP 8 
   PEP 8 - Style Guide for Python Code
   http://www.python.org/dev/peps/pep-0008/
-  - define values
-  - setup
-  - infrared value -> set_direction -> motor_inc
-  - infrared values takes ir value sends to set_direction
-  - set_direction determines direction based on  
   
-*/
+  Aim here is for legibility over Style consistency
+  ---
+  
+  This is the code for one module in the Grow-op surface. Each module consists of a
+  motor controlling an arm and a inrared sensor. The infrared sensor detects proximity
+  (i.e someone reaching out to the surface) and sends instructions to the motor to 
+  retract the arm accordingly. Each module is local and not 'aware' of it's neighbors.
+  
+  a     b     c     d     e
+  
+        |    
+        |    
+  |-----|-----\-----|-----|
+  |            \    |     |
+  |             \   |     |
+  
+  For module a-e. Module b's ir sensor and motor activity will not effect it's neighbors.
+  In this case Module's c's ir sensor is also triggered by activity. This is what gives
+  the surface's cascading effect, cheaply and effectively.  
+  
+  ---
+  
+  Basic code structure is:  
+    * inputs (sets MUX control pins, ir sensor, and motor arm pos) -> 
+    *   main loop (receives values and sends to set_direction) -> 
+    *     set_direction (determines direction of arm based on position and ir activity)-> 
+    *       motor_inc (converts dir and pos into instructions for motor arm incrementation)
+  
+ 
+  START
+  ____|
+      |
+      |
+      |
+  starting: pos = 180; dir = 4 (stay at bottom)    
+  
+  
+  MOVE UP
+         /
+        /
+       /
+  ----/     
+  moving: 0 > pos < 180; dir = 1 (go to top)
+  
+  
+  MOVE DOWN
+  ----\
+       \
+        \
+         \
+  if ir sensor is not active, dir = 3 (go to bottom) 
+  and then dir = 4 (stay at bottom)
+  
+  MAX
+      | 
+      |      
+      |
+  ----|
+  end position, fully retracted: pos = 0
+  Once ir sensor is not active, the arm will move down
+  and rest  
 
-
-
-
-/******************************************************************************
-  Set initial Variables
-  Hardware variables
-  1. Define MUX control pins on board.
-  2. Define servo motor on this pin.
-  Define variables for code.
-  1. Global variables
- ******************************************************************************/
+--------------------------------------------------------------------*/
 
 #define S3 5 
 #define S2 4
@@ -53,15 +96,13 @@ int IR_SENSOR_PIN = A3;
 int dir;
 int led = 13;
 int pos = 180;
-
-/******************************************************************************
- * Main Code
-   1. setup: set MUX board
-   2. loop: take ir input and calls set_dir method  
- ******************************************************************************/
   
-void setup()
-{
+void setup(){
+  /*-------------------------------------------------------------------- 
+   setup: none -> none 
+   Effects: set MUX board, and define global variables and constants
+ --------------------------------------------------------------------*/
+  /* setup: none -> none */
   Serial.begin(9600); // inits serial output 
   Serial.println("Program Starting");
   //pinMode(led, OUTPUT);
@@ -93,10 +134,15 @@ void setup()
 }
 
 void loop(){
+  /*-------------------------------------------------------------------- 
+   loop: recieves infrared sensor value (ir) from board and 
+   calls set_dir method with ir as argument  
+ --------------------------------------------------------------------*/
+  /* loop: none -> none */
   int ir = analogRead(IR_SENSOR_PIN); // takes infrared value from infrared sensorpin
   if(DEBUG==true)
     Serial.println("IR: " + ir);
-  set_direction(ir); // sends value to set_direction method
+  set_direction(ir); // sends ir value to set_direction method
   if(DEBUG== true){
     Serial.println("POS: " + pos);
     Serial.println("DIR: " + dir);
