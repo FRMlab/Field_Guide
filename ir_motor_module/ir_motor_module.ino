@@ -4,14 +4,21 @@
  * Grow-Op
  ******************************************************************************/
 
-#define S3 5 //MUX control pins
+
+/*
+  Define variables for hardware.
+  1. Define MUX control pins on board.
+  2. define servo motor on this pin.
+*/
+
+#define S3 5 
 #define S2 4
 #define S1 3
 #define S0 2
 
-//#define irLedPin PIND // IR Led on this pin
-//#define irSensorPin 8 // IR sensor on this pin
-#include <Servo.h> // servo motor on this pin
+//#define irLedPin PIND // IR Led on this pin *OLD*
+//#define irSensorPin 8 // IR sensor on this pin *OLD*
+#include <Servo.h> 
 
 Servo servo_1; 
 Servo servo_2;
@@ -26,7 +33,10 @@ int led = 13;
 float dist = 60; // SET DISTANCE HERE!!
 float dist_val = (9462 + (dist * 16.92)) / dist; 
 int pos = 180;
-//******************************************************************************/
+
+/******************************************************************************
+ * Main Code
+ ******************************************************************************/
   
 void setup()
 {
