@@ -1,10 +1,17 @@
-
+/******************************************************************************
+  Define variables for hardware.
+  1. Define MUX control pins on board.
+  2. Define servo motor on this pin.
+  Define variables for code.
+  1. Global variables
+ ******************************************************************************/
+ 
 // set_direction
 // code sets dir variable to 1 - 4 then 
 // motor_inc changes pos based on dir
 // and returns ir variable
 void set_direction(int ir){
-  if(ir > dist_val){ //if sensor is active
+  if(ir > DIST_VAL){ //if sensor is active
     digitalWrite(led,HIGH);//trigger led 13
     if(pos > 0){ //go to 0 = top
       dir = 1;
