@@ -63,6 +63,7 @@ void setup()
 void loop(){
   int ir = analogRead(irSensorPin);
   Serial.println("IR: " + ir);
+  Serial.println("DIST_VAL: " + dist_val);
   set_direction(ir);
   Serial.println("POS: " + pos);
   Serial.println("DIR: " + dir);
