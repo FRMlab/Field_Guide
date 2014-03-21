@@ -1,8 +1,14 @@
-grow_op
+Field Guide
 =======
 
 ##### Description
 Arduino-based, responsive installation for Toronto's Gladstone Hotel
+
+<br>
+<p align="center">
+  <img src="https://googledrive.com/host/0B1aL4rZ85UMSbkRUNnVKN2RuWjg/"> 
+</p>
+<br>
 
 ##### Module
 This is the code for one module in the Grow-op surface. Each module consists of a motor controlling an arm and a inrared sensor. The infrared sensor detects proximity (i.e someone reaching out to the surface) and sends instructions to the motor to retract the arm accordingly. Each module is local and not 'aware' of it's neighbors.
