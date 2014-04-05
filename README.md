@@ -18,8 +18,9 @@ Field Guide is an arduino-based, responsive installation for Toronto's Gladstone
 </p>
 <br>
 
----
-##### License
+=======
+
+##### Legal Stuff
     Copyright (C) 2013-2014  F_RMlab
 
     This program is free software: you can redistribute it and/or modify
