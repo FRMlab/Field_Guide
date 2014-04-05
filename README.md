@@ -2,7 +2,7 @@ Field Guide
 =======
 
 ##### Description
-Arduino-based, responsive installation for Toronto's Gladstone Hotel
+Field Guide is an arduino-based, responsive installation for Toronto's Gladstone Hotel. The Field Guide code is made available under the GNU General Public License. For details see the LICENSE file.
 
 <br>
 <p align="center">
@@ -11,11 +11,6 @@ Arduino-based, responsive installation for Toronto's Gladstone Hotel
 <br>
 
 ##### License
-
-
-The Field Guide code is made available under the GNU General Public License. For details see the LICENSE file.
-    <br>
-    <br>
     Copyright (C) 2013-2014  F_RMlab
 
     This program is free software: you can redistribute it and/or modify
